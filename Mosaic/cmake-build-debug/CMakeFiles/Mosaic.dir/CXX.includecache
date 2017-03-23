@@ -9,6 +9,10 @@
 /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/main.cpp
 iostream
 -
+string
+-
+fstream
+-
 opencv2/imgproc/imgproc.hpp
 /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp

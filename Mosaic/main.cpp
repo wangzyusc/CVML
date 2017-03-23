@@ -1,26 +1,34 @@
 #include <iostream>
+#include <string>
+#include <fstream>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
 using namespace std;
 using namespace cv;
 
-Mat src; Mat dst;
-char window_name1[] = "Original image";
-char window_name2[] = "Processed image";
+const int compress_size = 100;
+
+void batchCompressImages(void){
+    string path = "../aflw 2/data/flickr/";
+    string src_path = path + "0/";
+    string dst_path = path + "compressed/";
+
+    ifstream list_file("../list.txt");
+
+    string line;
+    while(getline(list_file, line)){
+        cout << line << endl;
+        Mat src = imread(src_path + line);
+        int dst_size = min(src.cols, src.rows);
+        Mat dst = src(Range((src.rows - dst_size)/2, (src.rows + dst_size)/2),
+                      Range((src.cols - dst_size)/2, (src.cols + dst_size)/2));
+        resize(dst, dst, Size(compress_size, compress_size));
+        imwrite(dst_path + line, dst);
+    }
+}
 
 int main(int argc, char** argv) {
-
-    src = imread(argv[1]);
-    namedWindow(window_name1);
-    imshow(window_name1, src);
-
-    dst = src.clone();
-    GaussianBlur(dst, dst, Size(15, 15), 0, 0);
-
-    namedWindow(window_name2);
-    imshow(window_name2, dst);
-    waitKey();
-
+    batchCompressImages();
     return 0;
 }
