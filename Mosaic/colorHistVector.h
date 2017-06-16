@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <cassert>
+#include <string>
 #include <opencv/cv.h>
 
 using namespace std;
@@ -40,6 +41,11 @@ public:
      * @return
      */
     static double colorSimilarity(colorHistVector &vector1, colorHistVector &vector2);
+    /**
+     * Export the vector to json file on harddisk. (Make database further)
+     * @param path
+     */
+    void exportToJson(string path);
 };
 
 

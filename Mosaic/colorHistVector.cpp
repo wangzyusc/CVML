@@ -70,3 +70,7 @@ double colorHistVector::colorDistance(colorHistVector &vector1,
                 pow(weighted_vec1[1] - weighted_vec2[1],2) +
                 pow(weighted_vec1[2] - weighted_vec2[2],2));
 }
+
+void colorHistVector::exportToJson(string path) {
+    //dummy code here
+}
