@@ -81,11 +81,13 @@ int main(int argc, char** argv) {
     Mat src1 = imread("../lena.bmp");
     Mat src2 = imread("../defend_the_land.png");
     colorHistVector vector1(src1), vector2(src2);
-    //Not sure this method is correct, because the distance is different from average color difference.
     double dist = colorHistVector::colorDistance(vector1, vector2);
     cout << "The distance between two vectors are " << dist << endl;
-    Scalar avg1 = mean(src1), avg2 = mean(src2);
-    Scalar diff = avg1 - avg2;
-    cout << "The distance between average color of two images are " << diff << endl;
+    Scalar diff = mean(src1) - mean(src2);
+    double square_sum = 0;
+    for(int i = 0; i < 3; i++) square_sum += pow(diff[i], 2);
+    cout << "The distance between average color of two images are " << sqrt(square_sum) << endl;
+    double similarity = colorHistVector::colorSimilarity(vector1, vector2);
+    cout << "The similarity between two images are " << similarity << endl;
     return 0;
 }

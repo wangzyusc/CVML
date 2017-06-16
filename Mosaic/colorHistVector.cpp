@@ -29,7 +29,7 @@ colorHistVector::colorHistVector(Mat &img, int colorRes) {
     }
 }
 
-double colorHistVector::colorDistance(colorHistVector &vector1,
+double colorHistVector::colorSimilarity(colorHistVector &vector1,
                                              colorHistVector &vector2) {
     assert(vector1.colorSpaceResolution == vector2.colorSpaceResolution);
     int colorLevelCount = round(256.0 / vector1.colorSpaceResolution);
@@ -43,5 +43,30 @@ double colorHistVector::colorDistance(colorHistVector &vector1,
             }
         }
     }
-    return sqrt(square_sum) * vector1.colorSpaceResolution;
+    return sqrt(square_sum);
+}
+
+double colorHistVector::colorDistance(colorHistVector &vector1,
+                                      colorHistVector &vector2) {
+    assert(vector1.colorSpaceResolution == vector2.colorSpaceResolution);
+    int colorLevelCount = round(256.0 / vector1.colorSpaceResolution);
+    int colorRes = vector1.colorSpaceResolution;
+    vector<vector<vector<double>>> array1 = vector1.mVector,
+            array2 = vector2.mVector;
+    double weighted_vec1[] = {0, 0, 0}, weighted_vec2[] = {0, 0, 0};
+    for(int r = 0; r < colorLevelCount; r++){
+        for(int g = 0; g < colorLevelCount; g++){
+            for(int b = 0; b < colorLevelCount; b++){
+                weighted_vec1[0] += array1[r][g][b] * r * colorRes;//r
+                weighted_vec1[1] += array1[r][g][b] * g * colorRes;//g
+                weighted_vec1[2] += array1[r][g][b] * b * colorRes;//b
+                weighted_vec2[0] += array2[r][g][b] * r * colorRes;//r
+                weighted_vec2[1] += array2[r][g][b] * g * colorRes;//g
+                weighted_vec2[2] += array2[r][g][b] * b * colorRes;//b
+            }
+        }
+    }
+    return sqrt(pow(weighted_vec1[0] - weighted_vec2[0],2) +
+                pow(weighted_vec1[1] - weighted_vec2[1],2) +
+                pow(weighted_vec1[2] - weighted_vec2[2],2));
 }
