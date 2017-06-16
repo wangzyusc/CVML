@@ -3,6 +3,7 @@
 #include <fstream>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "colorHistVector.h"
 
 using namespace std;
 using namespace cv;
@@ -67,8 +68,24 @@ void meanSquaresTester(void){
     waitKey();
 }
 
+// Reference to matlab quadtree decomposition
+void qtDecomp(Mat& src){
+    
+}
+
 int main(int argc, char** argv) {
-    //batchCompressImages();
-    meanSquaresTester();
+    // Step 1: compress library images to 100*100.
+    // batchCompressImages();
+    // Step 2: try to get the color histogram of each library image.
+    // meanSquaresTester();
+    Mat src1 = imread("../lena.bmp");
+    Mat src2 = imread("../defend_the_land.png");
+    colorHistVector vector1(src1), vector2(src2);
+    //Not sure this method is correct, because the distance is different from average color difference.
+    double dist = colorHistVector::colorDistance(vector1, vector2);
+    cout << "The distance between two vectors are " << dist << endl;
+    Scalar avg1 = mean(src1), avg2 = mean(src2);
+    Scalar diff = avg1 - avg2;
+    cout << "The distance between average color of two images are " << diff << endl;
     return 0;
 }

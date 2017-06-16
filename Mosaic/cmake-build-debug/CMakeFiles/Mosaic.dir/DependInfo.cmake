@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/colorHistVector.cpp" "/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles/Mosaic.dir/colorHistVector.cpp.o"
   "/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/main.cpp" "/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles/Mosaic.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

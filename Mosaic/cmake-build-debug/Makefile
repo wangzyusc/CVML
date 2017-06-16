@@ -123,6 +123,33 @@ Mosaic/fast:
 	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/build
 .PHONY : Mosaic/fast
 
+colorHistVector.o: colorHistVector.cpp.o
+
+.PHONY : colorHistVector.o
+
+# target to build an object file
+colorHistVector.cpp.o:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/colorHistVector.cpp.o
+.PHONY : colorHistVector.cpp.o
+
+colorHistVector.i: colorHistVector.cpp.i
+
+.PHONY : colorHistVector.i
+
+# target to preprocess a source file
+colorHistVector.cpp.i:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/colorHistVector.cpp.i
+.PHONY : colorHistVector.cpp.i
+
+colorHistVector.s: colorHistVector.cpp.s
+
+.PHONY : colorHistVector.s
+
+# target to generate assembly for a file
+colorHistVector.cpp.s:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/colorHistVector.cpp.s
+.PHONY : colorHistVector.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Mosaic"
+	@echo "... colorHistVector.o"
+	@echo "... colorHistVector.i"
+	@echo "... colorHistVector.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

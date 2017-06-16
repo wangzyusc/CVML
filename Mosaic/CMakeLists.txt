@@ -6,7 +6,7 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp colorHistVector.cpp colorHistVector.h)
 add_executable(Mosaic ${SOURCE_FILES})
 
 target_link_libraries( Mosaic ${OpenCV_LIBS} )
