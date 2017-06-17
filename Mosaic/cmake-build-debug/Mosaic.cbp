@@ -93,6 +93,12 @@
 		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/main.cpp">
 			<Option target="Mosaic"/>
 		</Unit>
+		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/util.cpp">
+			<Option target="Mosaic"/>
+		</Unit>
+		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/util.h">
+			<Option target="Mosaic"/>
+		</Unit>
 		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

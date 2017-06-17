@@ -17,6 +17,7 @@ using namespace cv;
 class colorHistVector {
 private:
     int colorSpaceResolution;
+    int colorLevelCount;
     vector<vector<vector<double>>> mVector;
 public:
     /**
@@ -27,6 +28,12 @@ public:
      * @param colorRes color space resolution, to reduce the size of 3d vector.
      */
     colorHistVector(Mat& img, int colorRes = 10);
+    /**
+     * Constructs a colorHistVector from a json/xml file
+     * storing the parameters.
+     * @param filename
+     */
+    colorHistVector(string filename);
     /**
      * Calculate the distance in rgb space between 2 color histogram vectors.
      * @param vector1 an object of class colorHistVector
@@ -45,7 +52,7 @@ public:
      * Export the vector to json file on harddisk. (Make database further)
      * @param path
      */
-    void exportToJson(string path);
+    void exportToFile(string path);
 };
 
 

@@ -7,10 +7,9 @@
 
 colorHistVector::colorHistVector(Mat &img, int colorRes) {
     this->colorSpaceResolution = colorRes;
+    this->colorLevelCount = round(256.0 / colorRes);
     int pixel_count = img.cols * img.rows;
     double increment_unit = 1.0 / pixel_count;
-    int colorLevelCount = round(256.0 / colorRes);
-    //this->mVector = vector<vector<vector<float>>>();
     for(int i = 0; i < colorLevelCount; i++){
         vector<vector<double>> row_g;
         for(int j = 0; j < colorLevelCount; j++){
@@ -27,6 +26,11 @@ colorHistVector::colorHistVector(Mat &img, int colorRes) {
             mVector[r][g][b] += increment_unit;
         }
     }
+}
+
+colorHistVector::colorHistVector(string filename) {
+    FileStorage fs(filename, FileStorage::READ);
+    //dummy code here
 }
 
 double colorHistVector::colorSimilarity(colorHistVector &vector1,
@@ -71,6 +75,19 @@ double colorHistVector::colorDistance(colorHistVector &vector1,
                 pow(weighted_vec1[2] - weighted_vec2[2],2));
 }
 
-void colorHistVector::exportToJson(string path) {
+void colorHistVector::exportToFile(const string path) {
+    FileStorage fs(path, FileStorage::WRITE);
     //dummy code here
+    fs << "colorSpaceResolution" << colorSpaceResolution;
+    fs << "colorLevelCount" << colorLevelCount;
+    fs << "frequency" << "[";
+    for(int r = 0; r < colorLevelCount; r++){
+        for(int g = 0; g < colorLevelCount; g++){
+            for(int b = 0; b < colorLevelCount; b++){
+                //put all the values in file
+            }
+        }
+    }
+    fs << "]";
+    fs.release();
 }
