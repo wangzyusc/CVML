@@ -78,11 +78,48 @@ void util::colorHistVectorTester() {
     Mat src2 = imread("../defend_the_land.png");
     colorHistVector vector1(src1), vector2(src2);
     double dist = colorHistVector::colorDistance(vector1, vector2);
-    cout << "The distance between two vectors are " << dist << endl;
+    cout << "The distance between vector1 and 2 are " << dist << endl;
     Scalar diff = mean(src1) - mean(src2);
     double square_sum = 0;
     for(int i = 0; i < 3; i++) square_sum += pow(diff[i], 2);
     cout << "The distance between average color of two images are " << sqrt(square_sum) << endl;
-    double similarity = colorHistVector::colorSimilarity(vector1, vector2);
-    cout << "The similarity between two images are " << similarity << endl;
+    cout << "The similarity between vector 1 and 2 are "
+         << colorHistVector::colorSimilarity(vector1, vector2) << endl;
+    vector1.print();
+    vector1.exportToFile("../vector_lena.json");
+    colorHistVector vector3("../vector_lena.json");
+    vector3.print();
+    cout << "The similarity between vector 1 and 3 are "
+         << colorHistVector::colorSimilarity(vector1, vector3) << endl;
+}
+
+void util::batch_compute_colorHistVector() {
+    string path = "../aflw 2/data/flickr/";
+    string src_path = path + "compressed/";
+    string dst_path = path + "colorHist/";
+    ifstream list_file("../list.txt");
+    time_t raw_start_time; time(&raw_start_time);
+    string start_time = asctime(localtime(&raw_start_time));
+
+    int count = 0;
+    string line;
+    while(getline(list_file, line)){
+        count++;
+        string name = line.substr(0, line.length()-4);
+        cout << name << endl;
+        Mat src = imread(src_path + line);
+        colorHistVector hist(src, 20);
+        hist.exportToFile(dst_path + name + ".json");
+    }
+
+    time_t raw_end_time; time(&raw_end_time);
+    string end_time = asctime(localtime(&raw_end_time));
+    cout << "From: " << start_time;
+    cout << "To: " << end_time;
+    cout << "Batch processed " << count << " images for computation of color histogram." << endl;
+    /**
+     * From: Sun Jun 18 01:28:46 2017
+       To: Sun Jun 18 01:28:59 2017
+       Batch processed 7202 images for computation of color histogram.
+     */
 }

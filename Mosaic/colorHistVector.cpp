@@ -5,19 +5,12 @@
 
 #include "colorHistVector.h"
 
-colorHistVector::colorHistVector(Mat &img, int colorRes) {
+colorHistVector::colorHistVector(const Mat &img, int colorRes) {
     this->colorSpaceResolution = colorRes;
-    this->colorLevelCount = round(256.0 / colorRes);
+    this->colorLevelCount = (int)ceil(256.0 / colorRes);
     int pixel_count = img.cols * img.rows;
     double increment_unit = 1.0 / pixel_count;
-    for(int i = 0; i < colorLevelCount; i++){
-        vector<vector<double>> row_g;
-        for(int j = 0; j < colorLevelCount; j++){
-            vector<double> row_b(colorLevelCount);
-            row_g.push_back(row_b);
-        }
-        mVector.push_back(row_g);
-    }
+    init_3dvector();
     for(int j = 0; j < img.rows; j++){
         for(int i = 0; i < img.cols; i++){
             int r = img.at<Vec3b>(j, i)[2] / colorRes;
@@ -30,28 +23,48 @@ colorHistVector::colorHistVector(Mat &img, int colorRes) {
 
 colorHistVector::colorHistVector(string filename) {
     FileStorage fs(filename, FileStorage::READ);
-    //dummy code here
+    int filename_len = filename.length();
+    assert(filename.substr(filename_len-5).compare(".json") == 0);
+    fs["colorSpaceResolution"] >> this->colorSpaceResolution;
+    fs["colorLevelCount"] >> this->colorLevelCount;
+    //Read the vector entries
+    vector<vector<vector<double>>> source_vector;//maybe vector<string>
+    fs["vector"] >> source_vector;
+    init_3dvector();
+    for(int r = 0; r < colorLevelCount; r++){
+        for(int g = 0; g < colorLevelCount; g++){
+            for(int b = 0; b < colorLevelCount; b++){
+                mVector[r][g][b] = source_vector[r][g][b];
+            }
+        }
+    }
 }
 
-double colorHistVector::colorSimilarity(colorHistVector &vector1,
-                                             colorHistVector &vector2) {
-    assert(vector1.colorSpaceResolution == vector2.colorSpaceResolution);
-    int colorLevelCount = round(256.0 / vector1.colorSpaceResolution);
-    double square_sum = 0;
+double colorHistVector::colorSimilarity(const colorHistVector &vector1,
+                                        const colorHistVector &vector2) {
+    assert(vector1.colorLevelCount == vector2.colorLevelCount);
+    assert(vector1.mVector.size() && vector2.mVector.size());
+    int colorLevelCount = vector1.colorLevelCount;
+    double distance_sum = 0;
     vector<vector<vector<double>>> array1 = vector1.mVector,
                                    array2 = vector2.mVector;
     for(int r = 0; r < colorLevelCount; r++){
         for(int g = 0; g < colorLevelCount; g++){
             for(int b = 0; b < colorLevelCount; b++){
-                square_sum += pow(array1[r][g][b] - array2[r][g][b], 2);
+                /*
+                 * Here we use the 'density distance' defined in this paper:
+                 * https://engineering.ucsb.edu/~cse/Files/distributiondistance042.pdf
+                 * within which formula (25) and (26).
+                 */
+                distance_sum += abs(array1[r][g][b] - array2[r][g][b]);
             }
         }
     }
-    return sqrt(square_sum);
+    return 1 - sqrt(distance_sum) / 2;
 }
 
-double colorHistVector::colorDistance(colorHistVector &vector1,
-                                      colorHistVector &vector2) {
+double colorHistVector::colorDistance(const colorHistVector &vector1,
+                                      const colorHistVector &vector2) {
     assert(vector1.colorSpaceResolution == vector2.colorSpaceResolution);
     int colorLevelCount = round(256.0 / vector1.colorSpaceResolution);
     int colorRes = vector1.colorSpaceResolution;
@@ -76,18 +89,39 @@ double colorHistVector::colorDistance(colorHistVector &vector1,
 }
 
 void colorHistVector::exportToFile(const string path) {
+    cout << "Saving colorHistVector to " << path << endl;
     FileStorage fs(path, FileStorage::WRITE);
-    //dummy code here
     fs << "colorSpaceResolution" << colorSpaceResolution;
     fs << "colorLevelCount" << colorLevelCount;
-    fs << "frequency" << "[";
+    fs << "vector" << "[";
     for(int r = 0; r < colorLevelCount; r++){
+        fs << "[";
         for(int g = 0; g < colorLevelCount; g++){
+            fs << "[";
             for(int b = 0; b < colorLevelCount; b++){
-                //put all the values in file
+                fs << this->mVector[r][g][b];
             }
+            fs << "]";
         }
+        fs << "]";
     }
     fs << "]";
     fs.release();
+}
+
+void colorHistVector::print() {
+    cout << "colorSpaceResolution = " << this->colorSpaceResolution
+         << ", colorLevelCount = " << this->colorLevelCount << endl;
+}
+
+void colorHistVector::init_3dvector() {
+    this->mVector = vector<vector<vector<double>>>();
+    for(int i = 0; i < colorLevelCount; i++){
+        vector<vector<double>> row_g;
+        for(int j = 0; j < colorLevelCount; j++){
+            vector<double> row_b(colorLevelCount);
+            row_g.push_back(row_b);
+        }
+        mVector.push_back(row_g);
+    }
 }

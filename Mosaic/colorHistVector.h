@@ -9,6 +9,7 @@
 #include <vector>
 #include <cassert>
 #include <string>
+#include <iostream>
 #include <opencv/cv.h>
 
 using namespace std;
@@ -27,7 +28,7 @@ public:
      * @param img Assume the input Mat img is in rgb256 format.
      * @param colorRes color space resolution, to reduce the size of 3d vector.
      */
-    colorHistVector(Mat& img, int colorRes = 10);
+    colorHistVector(const Mat& img, int colorRes = 10);
     /**
      * Constructs a colorHistVector from a json/xml file
      * storing the parameters.
@@ -40,19 +41,29 @@ public:
      * @param vector2 another object of class colorHistVector
      * @return
      */
-    static double colorDistance(colorHistVector& vector1, colorHistVector& vector2);
+    static double colorDistance(const colorHistVector& vector1, const colorHistVector& vector2);
     /**
      * Calculate the color distribution similarity between 2 color histogram vectors.
      * @param vector1 an object of class colorHistVector
      * @param vector2 another object of class colorHistVector
      * @return
      */
-    static double colorSimilarity(colorHistVector &vector1, colorHistVector &vector2);
+    static double colorSimilarity(const colorHistVector &vector1, const colorHistVector &vector2);
     /**
      * Export the vector to json file on harddisk. (Make database further)
      * @param path
      */
     void exportToFile(string path);
+    /**
+     * Print basic info of the vector. (It's more like for debugging use)
+     */
+    void print();
+
+private:
+    /**
+     * Helper private method. Initializes the 3-d vector.
+     */
+    void init_3dvector();
 };
 
 
