@@ -21,10 +21,27 @@ colorHistVector::colorHistVector(const Mat &img, int colorRes) {
     }
 }
 
+colorHistVector::colorHistVector(const Mat &img, Rect roi, int colorRes) {
+    this->colorSpaceResolution = colorRes;
+    this->colorLevelCount = (int)ceil(256.0 / colorRes);
+    assert(checkInBound(img, roi));
+    int pixel_count = roi.height * roi.width;
+    double increment_unit = 1.0 / pixel_count;
+    init_3dvector();
+    for(int j = roi.y; j < roi.y + roi.height; j++){
+        for(int i = roi.x; i < roi.x + roi.width; i++){
+            int r = img.at<Vec3b>(j, i)[2] / colorRes;
+            int g = img.at<Vec3b>(j, i)[1] / colorRes;
+            int b = img.at<Vec3b>(j, i)[0] / colorRes;
+            mVector[r][g][b] += increment_unit;
+        }
+    }
+}
+
 colorHistVector::colorHistVector(string filename) {
     FileStorage fs(filename, FileStorage::READ);
     int filename_len = filename.length();
-    assert(filename.substr(filename_len-5).compare(".json") == 0);
+    assert(filename.substr(filename_len - 5).compare(".json") == 0);
     fs["colorSpaceResolution"] >> this->colorSpaceResolution;
     fs["colorLevelCount"] >> this->colorLevelCount;
     //Read the vector entries
@@ -124,4 +141,11 @@ void colorHistVector::init_3dvector() {
         }
         mVector.push_back(row_g);
     }
+}
+
+bool colorHistVector::checkInBound(const Mat &img, const Rect &roi) {
+    return (roi.x >= 0) && (roi.x < img.cols)
+        && (roi.y >= 0) && (roi.y < img.rows)
+        && (roi.width >= 0) && (roi.x + roi.width <= img.cols)
+        && (roi.height >= 0) && (roi.y + roi.height <= img.rows);
 }

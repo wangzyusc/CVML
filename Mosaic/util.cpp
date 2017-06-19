@@ -76,7 +76,7 @@ void util::meanSquaresTester(void){
 void util::colorHistVectorTester() {
     Mat src1 = imread("../lena.bmp");
     Mat src2 = imread("../defend_the_land.png");
-    colorHistVector vector1(src1), vector2(src2);
+    colorHistVector vector1(src1, Rect(0,0,256,512), 20), vector2(src1, Rect(256, 0, 256, 512), 20);
     double dist = colorHistVector::colorDistance(vector1, vector2);
     cout << "The distance between vector1 and 2 are " << dist << endl;
     Scalar diff = mean(src1) - mean(src2);

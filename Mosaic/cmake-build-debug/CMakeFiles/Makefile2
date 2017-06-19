@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-buil
 CMakeFiles/Mosaic.dir/all:
 	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/depend
 	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target Mosaic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target Mosaic"
 .PHONY : CMakeFiles/Mosaic.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/Mosaic.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Mosaic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Mosaic.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Mosaic.dir/rule

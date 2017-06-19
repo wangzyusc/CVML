@@ -177,6 +177,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+quadTree.o: quadTree.cpp.o
+
+.PHONY : quadTree.o
+
+# target to build an object file
+quadTree.cpp.o:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/quadTree.cpp.o
+.PHONY : quadTree.cpp.o
+
+quadTree.i: quadTree.cpp.i
+
+.PHONY : quadTree.i
+
+# target to preprocess a source file
+quadTree.cpp.i:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/quadTree.cpp.i
+.PHONY : quadTree.cpp.i
+
+quadTree.s: quadTree.cpp.s
+
+.PHONY : quadTree.s
+
+# target to generate assembly for a file
+quadTree.cpp.s:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/quadTree.cpp.s
+.PHONY : quadTree.cpp.s
+
 util.o: util.cpp.o
 
 .PHONY : util.o
@@ -219,6 +246,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... quadTree.o"
+	@echo "... quadTree.i"
+	@echo "... quadTree.s"
 	@echo "... util.o"
 	@echo "... util.i"
 	@echo "... util.s"

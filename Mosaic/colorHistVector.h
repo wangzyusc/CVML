@@ -21,6 +21,7 @@ private:
     int colorLevelCount;
     vector<vector<vector<double>>> mVector;
 public:
+    colorHistVector(){};
     /**
      * Constructor of colorHistVector. Will store the vector values in
      * the 3-dimensional array. Each entry of vector is the frequency (0-1)
@@ -29,6 +30,13 @@ public:
      * @param colorRes color space resolution, to reduce the size of 3d vector.
      */
     colorHistVector(const Mat& img, int colorRes = 10);
+    /**
+     * Constructor of colorHistVector based on images with the ROI.
+     * @param img source image.
+     * @param ROI region of interest. Should be inside the source image.
+     * @param colorRes color space resolution, to reduce the size of 3d vector.
+     */
+    colorHistVector(const Mat& img, Rect roi, int colorRes = 10);
     /**
      * Constructs a colorHistVector from a json/xml file
      * storing the parameters.
@@ -64,6 +72,10 @@ private:
      * Helper private method. Initializes the 3-d vector.
      */
     void init_3dvector();
+    /**
+     * Helper private method. Check if the roi is in the bound of image.
+     */
+    bool checkInBound(const Mat &img, const Rect &roi);
 };
 
 

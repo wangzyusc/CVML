@@ -15,8 +15,8 @@ int main(int argc, char** argv) {
     // Step 1: compress library images to 100*100.
     // util::batchCompressImages();
     // Step 2: try to get the color histogram of each library image.
-    //util::colorHistVectorTester();
+    util::colorHistVectorTester();
     //Next step: batch processing color histogram vector for library images.
-    util::batch_compute_colorHistVector();
+    //util::batch_compute_colorHistVector();
     return 0;
 }
