@@ -90,6 +90,12 @@
 		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/colorHistVector.h">
 			<Option target="Mosaic"/>
 		</Unit>
+		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/imgSegmentation.cpp">
+			<Option target="Mosaic"/>
+		</Unit>
+		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/imgSegmentation.h">
+			<Option target="Mosaic"/>
+		</Unit>
 		<Unit filename="/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/main.cpp">
 			<Option target="Mosaic"/>
 		</Unit>

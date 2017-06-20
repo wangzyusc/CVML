@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Mosaic.dir/colorHistVector.cpp.o"
   "CMakeFiles/Mosaic.dir/util.cpp.o"
   "CMakeFiles/Mosaic.dir/quadTree.cpp.o"
+  "CMakeFiles/Mosaic.dir/imgSegmentation.cpp.o"
   "Mosaic.pdb"
   "Mosaic"
 )

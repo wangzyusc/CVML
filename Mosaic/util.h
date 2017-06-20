@@ -13,6 +13,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "colorHistVector.h"
+#include "imgSegmentation.h"
 
 using namespace std;
 using namespace cv;
@@ -46,6 +47,8 @@ public:
      * Do batch processing of computing color histogram of images.
      */
     static void batch_compute_colorHistVector();
+
+    static void imgSegmentationTester();
 };
 
 

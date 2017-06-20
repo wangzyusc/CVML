@@ -66,16 +66,16 @@ public:
      * Print basic info of the vector. (It's more like for debugging use)
      */
     void print();
+    /**
+     * Helper private method. Check if the roi is in the bound of image.
+     */
+    static bool checkInBound(const Mat &img, const Rect &roi);
 
 private:
     /**
      * Helper private method. Initializes the 3-d vector.
      */
     void init_3dvector();
-    /**
-     * Helper private method. Check if the roi is in the bound of image.
-     */
-    bool checkInBound(const Mat &img, const Rect &roi);
 };
 
 

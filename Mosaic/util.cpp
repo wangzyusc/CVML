@@ -123,3 +123,8 @@ void util::batch_compute_colorHistVector() {
        Batch processed 7202 images for computation of color histogram.
      */
 }
+
+void util::imgSegmentationTester() {
+    Mat src = imread("../lena.bmp");
+    imgSegmentation segment(src);
+}

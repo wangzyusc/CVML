@@ -150,6 +150,33 @@ colorHistVector.cpp.s:
 	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/colorHistVector.cpp.s
 .PHONY : colorHistVector.cpp.s
 
+imgSegmentation.o: imgSegmentation.cpp.o
+
+.PHONY : imgSegmentation.o
+
+# target to build an object file
+imgSegmentation.cpp.o:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/imgSegmentation.cpp.o
+.PHONY : imgSegmentation.cpp.o
+
+imgSegmentation.i: imgSegmentation.cpp.i
+
+.PHONY : imgSegmentation.i
+
+# target to preprocess a source file
+imgSegmentation.cpp.i:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/imgSegmentation.cpp.i
+.PHONY : imgSegmentation.cpp.i
+
+imgSegmentation.s: imgSegmentation.cpp.s
+
+.PHONY : imgSegmentation.s
+
+# target to generate assembly for a file
+imgSegmentation.cpp.s:
+	$(MAKE) -f CMakeFiles/Mosaic.dir/build.make CMakeFiles/Mosaic.dir/imgSegmentation.cpp.s
+.PHONY : imgSegmentation.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -243,6 +270,9 @@ help:
 	@echo "... colorHistVector.o"
 	@echo "... colorHistVector.i"
 	@echo "... colorHistVector.s"
+	@echo "... imgSegmentation.o"
+	@echo "... imgSegmentation.i"
+	@echo "... imgSegmentation.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

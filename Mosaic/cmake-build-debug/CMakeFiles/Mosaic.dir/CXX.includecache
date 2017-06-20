@@ -22,6 +22,18 @@ iostream
 opencv/cv.h
 -
 
+/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/imgSegmentation.cpp
+imgSegmentation.h
+/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/imgSegmentation.h
+
+/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/imgSegmentation.h
+unordered_map
+-
+opencv/cv.hpp
+-
+colorHistVector.h
+/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/colorHistVector.h
+
 /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/main.cpp
 colorHistVector.h
 /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/colorHistVector.h
@@ -55,6 +67,8 @@ opencv2/highgui/highgui.hpp
 /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/opencv2/highgui/highgui.hpp
 colorHistVector.h
 /Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/colorHistVector.h
+imgSegmentation.h
+/Users/zhiyuanwang/Documents/Workspace/CVML/Mosaic/imgSegmentation.h
 
 /usr/local/include/opencv/cv.h
 opencv2/core/core_c.h
@@ -67,6 +81,26 @@ opencv2/video/tracking_c.h
 /usr/local/include/opencv/opencv2/video/tracking_c.h
 opencv2/objdetect/objdetect_c.h
 /usr/local/include/opencv/opencv2/objdetect/objdetect_c.h
+
+/usr/local/include/opencv/cv.hpp
+cv.h
+/usr/local/include/opencv/cv.h
+opencv2/core.hpp
+/usr/local/include/opencv/opencv2/core.hpp
+opencv2/imgproc.hpp
+/usr/local/include/opencv/opencv2/imgproc.hpp
+opencv2/photo.hpp
+/usr/local/include/opencv/opencv2/photo.hpp
+opencv2/video.hpp
+/usr/local/include/opencv/opencv2/video.hpp
+opencv2/highgui.hpp
+/usr/local/include/opencv/opencv2/highgui.hpp
+opencv2/features2d.hpp
+/usr/local/include/opencv/opencv2/features2d.hpp
+opencv2/calib3d.hpp
+/usr/local/include/opencv/opencv2/calib3d.hpp
+opencv2/objdetect.hpp
+/usr/local/include/opencv/opencv2/objdetect.hpp
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
